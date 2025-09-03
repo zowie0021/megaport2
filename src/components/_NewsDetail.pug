@@ -1,0 +1,41 @@
+include ../layouts/_Settings.pug
+include ../data/_news.pug
+
+mixin NewsDetail(index)
+  -
+    //- const data = newsList[index];
+    const data = newsList.find(function(item) {
+      return (item.path || item.id) === index;
+    });
+
+  doctype html
+  html(lang="en")
+    head
+      - 
+        path = `/news/${data.id}.html`
+        pageTitle = data.title;
+        infoTitle = '';
+        description = data.description;
+
+      include ../layouts/_Head.pug
+
+    body
+      include ../layouts/_Header.pug
+
+      main(class="l-main")
+        section(class="l-news-detail")
+          div(class="container")
+            div(class="l-news-detail__title-wrap")
+              h1(class="text-2xl") #{data.title}
+              span(class="o-text-lg") #{data.date}
+            div(class="l-news-detail__content")
+              img(
+                data-src=`${basePath}/${data.image}` alt=data.title
+                class="js-lazy"
+              )
+              //- 遇到後台編輯器，還原 reset 設定值
+              //- !=data.content 這樣寫才能生成 html 結構
+              div(class="u-editor")
+                !=data.content
+
+      include ../layouts/_Footer.pug

@@ -1,0 +1,51 @@
+meta(charset="UTF-8")
+//- 新增 maximum-scale=1.0 防止手機點擊表單畫面放大
+meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+//- meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+//- 非正式或練習用網站，可設置此 meta 防止瀏覽器索引
+meta(name="robots", content="noindex, nofollow")
+
+//- 防止 iphone 自動加入撥號連結
+meta(http-equiv="x-rim-auto-match", content="none")
+meta(name="format-detection", content="telephone=no")
+
+//- FB 縮圖資訊，偵錯及預覽工具 https://developers.facebook.com/tools/debug/
+meta(property="og:type", content="website")
+meta(property="og:url", content=`${baseUrl}${basePath}`)
+meta(property="og:image", content=`${baseUrl}${basePath}${image}`)
+meta(property="og:description", content=description)
+
+//- 網頁描述
+meta(name="description", content=description)
+
+//- Favicon
+link(rel="icon", type="image/png", href=`${basePath}/favicon/favicon-96x96.png`, sizes="96x96")
+link(rel="icon", type="image/svg+xml", href=`${basePath}/favicon/favicon.svg`)
+link(rel="shortcut icon", href=`${basePath}/favicon/favicon.ico`)
+link(rel="apple-touch-icon", sizes="180x180", href="favicon/apple-touch-icon.png")
+meta(name="apple-mobile-web-app-title", content="大港開唱")
+link(rel="manifest", href=`${basePath}/favicon/site.webmanifest`)
+
+//- 大部分 js 插件會引入在 body 最後面，但因為 Iconify 用了 web component 技術
+//- 所以要優先載入，才會引入在 head
+//- Iconify
+script(src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js")
+
+//- Google Fonts
+link(rel="preconnect", href="https://fonts.googleapis.com")
+link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+link(href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap", rel="stylesheet")
+
+link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous")
+
+link(rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css")
+link(rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css")
+
+link(rel="stylesheet", href=`${basePath}/css/style.css`)
+
+//- <Page Title> - <Site Name>｜<Info Title>
+- const newPageTitle = pageTitle ? `${pageTitle} - ` : '';
+- const title = `${newPageTitle}${siteName}｜${infoTitle}`;
+meta(property="og:title", content=title)
+title #{title}

@@ -1,0 +1,24 @@
+.c-artist-card {
+  width: 100%;
+  max-width: rem(450);
+  &.-size-lg {
+    max-width: rem(560);
+  }
+  &.-size-sm {
+    max-width: rem(200);
+  }
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--spacing-2);
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+    &:hover {
+      filter: grayscale(0);
+    }
+  }
+  &.-reverse &__wrap {
+    flex-direction: column-reverse;
+  }
+}

@@ -1,0 +1,186 @@
+include ../layouts/_Settings.pug
+
+//- include 只能用相對路徑
+include ../components/_ArtistCard.pug
+include ../components/_Card.pug
+
+//- 模擬資料庫或後端傳來的 api
+include ../data/_artist.pug
+include ../data/_news.pug
+
+doctype html
+html(lang="en")
+  head
+    include ../layouts/_Head.pug
+    
+  body
+    //- 這邊不是建立 mixin 所以直接用 include 結構進來
+    include ../layouts/_Header.pug
+
+      //- p ssaasda
+
+    main
+      div(class="l-hero" data-aos="fade")
+        div(class="swiper l-hero__swiper")
+          div(class="swiper-wrapper")
+            div(class="swiper-slide l-hero__slide")
+              div(class="l-hero__img-mask")
+                img(
+                  data-src="img/hero/img-01.jpg"
+                  alt="Megaport Festival 大港開唱 2021"
+                  class="js-lazy u-object-fit"
+                )
+            div(class="swiper-slide l-hero__slide")
+              div(class="l-hero__img-mask")
+                img(
+                  data-src="img/hero/img-02.jpg"
+                  alt="Megaport Festival 大港開唱 2021"
+                  class="js-lazy u-object-fit"
+                )
+            div(class="swiper-slide l-hero__slide")
+              div(class="l-hero__img-mask")
+                img(
+                  data-src="img/hero/img-03.jpg"
+                  alt="Megaport Festival 大港開唱 2021"
+                  class="js-lazy u-object-fit"
+                )
+
+      section(class="-gradient pb-0 l-lineup")
+        div(class="container")
+          h2(class="o-section-title mb-20" data-aos="fade-up")
+            span(class="o-section-title__title") LINEUP
+            span(class="o-section-title__subtitle") MEGAPORT FESTIVAL
+
+          div(class="row -gap")
+            div(class="col-md-6 col-lg-5 l-lineup__card-wrap" data-aos="fade-up")
+              +ArtistCard({
+                data: artistList[0]
+              })
+            div(class="col-md-6 col-lg-7 l-lineup__card-wrap" data-aos="fade-up")
+              +ArtistCard({
+                data: artistList[1],
+                size: 'lg'
+              })
+              //- article(class="c-artist-card -size-lg")
+              //-   a(href="##" class="c-artist-card__wrap") 
+              //-     h3(class="text-xl fw-900 tracking-tight") 9m88
+              //-     div(class="u-img-ratio c-artist-card__img-mask")
+              //-       img(
+              //-         src="img/lineup/artist-01.jpg"
+              //-         alt="9m88"
+              //-         class="u-object-fit"
+              //-       )
+            div(class="col-md-6 col-lg-7 col-xl-4 l-lineup__card-wrap" data-aos="fade-up")
+              //- keyname: value
+              +ArtistCard({
+                data: artistList[2],
+                size: 'lg',
+                direction: 'reverse'
+              })
+            div(class="col-md-6 col-lg-5 col-xl-4 l-lineup__card-wrap" data-aos="fade-up")
+              +ArtistCard({
+                data: artistList[3],
+                direction: 'reverse'
+              })
+            div(class="col-md-6 col-xl-4 l-lineup__card-wrap" data-aos="fade-up")
+              +ArtistCard({
+                data: artistList[4],
+                direction: 'reverse'
+              })
+
+      section(class="l-home-news")
+        div(class="container")
+          h2(class="o-section-title mb-20 text-center" data-aos="fade-up")
+            span(class="o-section-title__title") NEWS
+            span(class="o-section-title__subtitle") MEGAPORT FESTIVAL
+
+          div(class="swiper l-home-news__swiper" data-aos="fade-up")
+            div(class="swiper-wrapper")
+              //- - for(let i = 0; i < newsList.length; i++)
+              //-   div(class="swiper-slide l-home-news__slide")
+              //-     +Card({ data: newsList[i] })
+              each item, index in newsList
+                div(class="swiper-slide l-home-news__slide")
+                  //- +Card({ data: item, index: index })
+                  +Card({ data: item, index })
+
+        div(class="l-home-news__swiper-btn -prev")
+          iconify-icon(icon="fa-solid:arrow-left" class="u-icon")
+        div(class="l-home-news__swiper-btn -next")
+          iconify-icon(icon="fa-solid:arrow-right" class="u-icon")
+
+      section(id="about" class="-gradient l-about")
+        div(class="container")
+          h2(class="o-section-title mb-20" data-aos="fade-right")
+            span(class="o-section-title__title") ABOUT
+            span(class="o-section-title__subtitle") MEGAPORT FESTIVAL
+
+        div(class="container -align-left")
+          div(class="row")
+            div(class="col-md-8 order-md-0 order-2" data-aos="fade-right")
+              div(class="l-about__img-wrap")
+                div(class="l-about__img-mask" data-parallax-offset="-200")
+                  img(
+                    data-src="img/about/about.jpg", alt="關於大港開唱"
+                    class="js-lazy u-object-fit -abs -parallax"
+                  )
+            div(class="col-md-4 order-md-0 order-1")
+              div(class="l-about__content-wrap")
+                div(class="l-about__content mb-16" data-aos="fade-up")
+                  h3(class="mb-4 text-2xl fw-900") 2022 年即將邁入第十三屆的《大港開唱》
+                  p(class="fw-500 line-clamp-3") 每年三月於高雄舉辦的大型音樂祭典，受到全台灣及日本香港年輕觀眾的喜愛，近年已成為台灣最具指標性的大型戶外音樂祭活動。
+                div(class="l-about__content" data-aos="fade-up")
+                  h3(class="mb-4 text-2xl fw-900") 「人生」與「音樂」
+                  p(class="fw-500 line-clamp-3") 大港舉辦在高雄港邊，獨特的海港地景和人文風情，常勾起人生中各種酸甜苦辣的回憶。也因如此，大港總是邀請有著豐富人生歷程的知名藝人及業界前輩演出，也會與新一代的樂團或藝人一起合作演出，交融出世代之間的化學效應，往往成為當年度為人津津樂道的經典現場
+
+              div(class="o-btn -align-right mt-10 mb-2" data-aos="fade")
+                a(href="##" class="o-btn__link") MORE
+
+
+    include ../layouts/_Footer.pug
+
+    script(src="https://unpkg.com/swiper@8/swiper-bundle.min.js")
+    //- <script>
+    
+    //- </script>
+
+    //- pug 寫 script 後面要加一個點 .
+    script.
+      const heroSwiper = new Swiper('.l-hero__swiper', {
+        effect: 'fade',
+        loop: true, // 循環模式
+        speed: 1200,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+      });
+
+      const newsSwiper = new Swiper('.l-home-news__swiper', {
+        loop: true, // 循環模式
+        speed: 1200,
+        slidesPerView: 'auto',
+        spaceBetween: 12,
+        centeredSlides: true,
+        breakpoints: {
+          576: {
+            slidesPerView: 2,
+            spaceBetween: 12,
+            centeredSlides: false
+          },
+          992: {
+            slidesPerView: 3,
+            spaceBetween: 16,
+            centeredSlides: false
+          },
+          1400: {
+            slidesPerView: 4,
+            spaceBetween: 24,
+            centeredSlides: false
+          }
+        },
+        navigation: {
+          nextEl: '.l-home-news__swiper-btn.-next',
+          prevEl: '.l-home-news__swiper-btn.-prev',
+        },
+      });

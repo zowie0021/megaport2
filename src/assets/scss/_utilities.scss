@@ -1,0 +1,451 @@
+.u-img-ratio {
+  --ratio: 4/3;
+  aspect-ratio: var(--ratio);
+}
+
+[data-parallax-offset] {
+  overflow: hidden;
+}
+.u-object-fit {
+  --object-fit: cover;
+  --object-position-x: center;
+  --object-position-y: center;
+  --parallax-offset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--object-fit);
+  object-position: var(--object-position-x) var(--object-position-y);
+  overflow: hidden;
+  &.-abs {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  &.-parallax {
+    // 把要做視差滾動的圖片高度，加上位移量，讓他有空間位移
+    // 乘以 1px 是為了讓 --parallax-offset 數字轉 px
+    height: calc(100% + var(--parallax-offset) * 1px)
+  }
+}
+
+// Icon
+[class*="u-icon"] {
+  // 因為 Iconify icon 預設是 inline 會導致一些像 img 一樣的底部空白
+  // 不過 vertical-align: middle; 無法徹底解決
+  // 所以直接設 block 跳脫文字樣式
+  display: block
+}
+.u-icon {
+  // width: 100%;
+  // height: 100%;
+  // @include size(100%);
+
+  // display: block;
+  font-size: rem(24);
+  &-lg {
+    font-size: rem(40);
+  }
+  &-md {
+    font-size: rem(28);
+  }
+  &-sm {
+    font-size: rem(18);
+  }
+}
+// .u-icon { display: block }
+// .u-icon-lg {}
+// .u-icon-md {}
+// .u-icon-sm {}
+
+.u-editor {
+  max-width: 100%;
+  font-size: var(--text-md);
+  font-weight: 500;
+  line-height: var(leading-relaxed);
+  overflow: auto;
+  a, button {
+    border-bottom: 1px solid var(--color-primary);
+    transition: color 0.3s;
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+  ul, ol {
+    list-style: revert;
+    margin: revert;
+  }
+  ul {
+    padding-left: rem(28);
+  }
+  ol {
+    padding-left: rem(36);
+  }
+  h1, h2, h3, h4, h5, h6, p, button {
+    margin: revert;
+  }
+  span {
+    display: inline;
+  }
+}
+
+// Line Clamp
+// 超過指定行數以 ... 收尾
+[class*="line-clamp"] {
+  --number: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: var(--number);
+  overflow: hidden;
+}
+.line-clamp {
+  &-1 { --number: 1; }
+  &-2 { --number: 2; }
+  &-3 { --number: 3; }
+}
+
+
+// 沒有加 .u-* 的，是跟 tailwind 寫法同步
+// Display
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+.block {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+
+// Flex
+.flex {
+  display: flex;
+}
+.shrink-0 {
+  flex-shrink: 0;
+}
+.grow-1 {
+  flex-grow: 1;
+}
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-col-reverse {
+  flex-direction: column-reverse;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.items-start {
+  align-items: flex-start;
+}
+.items-end {
+  align-items: flex-end;
+}
+.items-center {
+  align-items: center;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+
+// Size
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+
+
+// Spacing
+// @each $prefix, $properties in $spacing-prefixes {
+//   // section
+//   @each $axis in (x, y) {
+//     .u-#{$prefix}-section-#{$axis} {
+//       @each $property in $properties {
+//         #{$property}: var(--section-spacing-#{$axis});
+//       }
+//     }
+//   }
+//   @each $spacing, $vw in $spacing-map {
+//     .u-#{$prefix}-#{$spacing} {
+//       @each $property in $properties {
+//         $value: var(--spacing-#{$spacing});
+//         @if ($spacing == auto) {
+//           $value: auto;
+//         }
+//         #{$property}: $value if($spacing == 0, !important, null);
+//       }
+//     }
+//   }
+// }
+
+// 以前需要手動輸入自己要的值
+// 現在透過上面迴圈的方式生成
+.px-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.pt-0 {
+  padding-top: 0 !important;
+}
+.pr-0 {
+  padding-right: 0 !important;
+}
+.pb-0 {
+  padding-bottom: 0 !important;
+}
+.pl-0 {
+  padding-left: 0 !important;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+.ml-auto {
+  margin-left: auto;
+}
+
+.pt-30 {
+  padding-top: var(--spacing-30);
+}
+.pb-30 {
+  padding-top: var(--spacing-30);
+}
+
+.my-4 {
+  margin-top: var(--spacing-4) !important;
+  margin-bottom: var(--spacing-4) !important;
+}
+.mt {
+  &-30  {
+    margin-top: var(--spacing-30);
+  }
+  &-20  {
+    margin-top: var(--spacing-20);
+  }
+  &-16  {
+    margin-top: var(--spacing-16);
+  }
+  &-10  {
+    margin-top: var(--spacing-10);
+  }
+  &-4  {
+    margin-top: var(--spacing-4) !important;
+  }
+  &-2  {
+    margin-top: var(--spacing-2) !important;
+  }
+}
+.mb {
+  &-30  {
+    margin-bottom: var(--spacing-30);
+  }
+  &-20  {
+    margin-bottom: var(--spacing-20);
+  }
+  &-16  {
+    margin-bottom: var(--spacing-16);
+  }
+  &-4  {
+    margin-bottom: var(--spacing-4) !important;
+  }
+  &-2  {
+    margin-bottom: var(--spacing-2) !important;
+  }
+}
+
+// 將 map 內容生成 utilities
+// $utilities:
+//   font $font-map font-family,
+//   text $text-map font-size,
+//   leading $leading-map line-height,
+//   tracking $tracking-map letter-spacing,
+//   color $color-map color;
+
+// .u-font-serif {
+//   font-family: var(--font-serif);
+// }
+// .u-text-5xl {
+//   font-size: var(--text-5xl);
+// }
+// .u-leading-normal {
+//   line-height: var(--leading-normal);
+// }
+
+// @each $name, $map, $property in $utilities {
+//   @each $key, $value in $map {
+//     .u-#{$name}-#{$key} {
+//       #{$property}: var(--#{$name}-#{$key})
+//     }
+//     // .u-text-sm {
+//     //   font-size: var(--text-sm);
+//     // }
+//     @if ($name == color) {
+//       @each $child-key, $child-value in $value {
+//         @if ($child-key != default and $child-key != rgb) {
+//           .u-#{$name}-#{$key}-#{$child-key} {
+//             #{$property}: var(--#{$name}-#{$key}-#{$child-key})
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+
+// Fonts
+.font-sans {
+  font-family: var(--font-sans);
+}
+.font-en {
+  font-family: var(--font-en);
+}
+
+
+// Texts
+.text {
+  &-5xl {
+    font-size: var(--text-5xl);
+  }
+  &-4xl {
+    font-size: var(--text-4xl);
+  }
+  &-3xl {
+    font-size: var(--text-3xl);
+  }
+  &-2xl {
+    font-size: var(--text-2xl);
+  }
+  &-xl {
+    font-size: var(--text-xl);
+  }
+  &-lg {
+    font-size: var(--text-lg);
+  }
+  &-md {
+    font-size: var(--text-md);
+  }
+}
+
+
+// Font
+// @each $fw, $value in (900, 700, 600, 500, 400, 300, 100) {
+//   .u-fw-#{$fw} {
+//     font-weight: $fw
+//   }
+// }
+.fw {
+  &-900  {
+    font-weight: 900;
+  }
+  &-700  {
+    font-weight: 700;
+  }
+  &-500  {
+    font-weight: 500;
+  }
+  &-400  {
+    font-weight: 400;
+  }
+}
+
+
+// Line Height
+.leading-none {
+  line-height: var(--leading-none);
+}
+.leading-tight {
+  line-height: var(--leading-tight);
+}
+.leading-snug {
+  line-height: var(--leading-snug);
+}
+.leading-normal {
+  line-height: var(--leading-normal);
+}
+.leading-relaxed {
+  line-height: var(--leading-relaxed);
+}
+.leading-loose {
+  line-height: var(--leading-loose);
+}
+
+
+// Letter Spacing
+.tracking-tighter {
+  letter-spacing: var(--tracking-tighter);
+}
+.tracking-tight {
+  letter-spacing: var(--tracking-tight);
+}
+.tracking-normal {
+  letter-spacing: var(--tracking-normal);
+}
+.tracking-wide {
+  letter-spacing: var(--tracking-wide);
+}
+.tracking-wider {
+  letter-spacing: var(--tracking-wider);
+}
+.tracking-widest {
+  letter-spacing: var(--tracking-widest);
+}
+
+
+// Colors
+.color-primary {
+  color: var(--color-primary);
+}
+.color-secondary {
+  color: var(--color-secondary);
+}
+.color-secondary-mid {
+  color: var(--color-secondary-mid);
+}
+.color-black {
+  color: var(--color-black);
+}
+.color-black-80 {
+  color: var(--color-black-80);
+}
+.color-black-20 {
+  color: var(--color-black-20);
+}
+.color-gray {
+  color: var(--color-gray);
+}
+.color-gray-mid {
+  color: var(--color-gray-mid);
+}
+.color-gray-mid-40 {
+  color: var(--color-gray-mid-40);
+}
+.color-gray-light {
+  color: var(--color-gray-light);
+}
+.color-gray-light-80 {
+  color: var(--color-gray-light-80);
+}
+.color-white {
+  color: var(--color-white);
+}
+.color-white-40 {
+  color: var(--color-white-40);
+}

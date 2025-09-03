@@ -1,0 +1,261 @@
+.l-header {
+  position: sticky;
+  // position: fixed;
+  // left: 0;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  // padding: rem(16) rem(80);
+  padding-left: 4vw;
+  background-color: var(--color-black);
+  border-bottom: 1px solid var(--color-primary);
+  box-shadow: 0 var(--spacing-1) var(--spacing-14) var(--color-primary);
+  z-index: 9999;
+  @include media(max-2xl) {
+    padding: var(--spacing-4) 4vw
+  }
+  &__logo-mask {
+    // margin-right: auto;
+    max-width: rem(200);
+  }
+}
+
+// @include media(max-2xl) {
+//   .c-nav {}
+// }
+
+// input#burger-switcher:checked ~ .c-nav {
+//   height: 100%;
+//   opacity: 1;
+//   pointer-events: auto;
+// }
+.c-nav {
+  z-index: 99;
+  @include media(max-2xl) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-black-80);
+    opacity: 0;
+    pointer-events: none;
+    overflow: auto;
+    transition: opacity 0.3s;
+    &.is-opened {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+  &__menu {
+    display: flex;
+    color: var(--color-gray-mid);
+    letter-spacing: var(--tracking-tight);
+    // margin-left: auto;
+    @include media(max-2xl) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      // 因為 flex + 上下置中 + height 會造成上面被吃掉
+      // 把 height 改成 min-height 可以解決
+      min-height: 100%;
+      padding: var(--spacing-16) 0;
+    }
+  }
+  
+  &__btn-box {
+    display: flex;
+    // align-items: center;
+    // gap: 2vw
+    @include media(max-md) {
+      &:not(.-links) {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  }
+  &__btn-box.-links {
+    @include media(max-2xl) {
+      margin-top: var(--spacing-4);
+    }
+  }
+  
+  &__btn-wrap {
+    height: 100%;
+    // --color-gradient 是 btn 內部設定的變數，所以這邊是吃不到的
+    color: var(--color-gradient);
+  }
+  @include media(max-2xl) {
+    &__btn-wrap:first-child &__btn::after {
+      display: none;
+    }
+  }
+
+  &__btn {
+    // 預設值
+    --color-gradient: var(--color-primary);
+    height: 100%;
+    padding: var(--spacing-6) 2.8vw;
+    // border-left: 1px solid var(--color-gray-light);
+    transition: color 0.3s;
+    // 用偽元素做色塊當背景，因為 background-image 本身不能設 transition
+    // 這裡用 opacity 控制 hover 顯示
+    // 用群組選擇器，把共同屬性抓出來一起管理
+    &::before, &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-image: linear-gradient(to bottom, var(--color-gradient), transparent);
+    }
+    // &__btn::before {}
+    &::before {
+      // content: '';
+      // display: block;
+      // position: absolute;
+      // top: 0;
+      // left: 0;
+      width: 100%;
+      // height: 100%;
+      // background-image: linear-gradient(to bottom, var(--color-gradient), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    &::after {
+      // 會覆蓋掉 &__btn 父層的設定
+      --color-gradient: var(--color-gray-light);
+      // content: '';
+      // display: block;
+      // position: absolute;
+      // top: 0;
+      // left: 0;
+      width: 1px;
+      // height: 100%;
+      // background-image: linear-gradient(to bottom, var(--color-gray-light), transparent);
+      @include media(max-md) {
+        display: none;
+      }
+    }
+    // 後代選擇
+    // &:hover .text {
+    //   opacity: 1;
+    // }
+    // &:hover::before {
+    //   opacity: 1;
+    // }
+    &:hover, &.is-active {
+      color: var(--color-gray-light);
+      &::before {
+        opacity: 1;
+      }
+    }
+    &:hover {
+      &::before {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &__btn-box.-links &__btn {
+    // 重新設定變數值
+    --color-gradient: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    padding-left: 1.2vw;
+    padding-right: 1.2vw;
+    background-color: var(--color-gray-mid-40);
+    &::after {
+      --color-gradient: var(--color-secondary);
+    }
+    @include media(max-2xl) {
+      background-color: transparent;
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+// input#burger-switcher:checked + .o-burger 等同 is-opened 狀態
+// 被勾選的時候，相鄰的 o-bouger 裡面的 o-burger__line 的樣式
+input#burger-switcher:checked + .o-burger .o-burger__line {
+  --line-offset: calc(var(--gap) + var(--height));
+  &:nth-child(1) {
+    // 不能先旋轉在位移，因為會先改變軸心才位移，位置會不對
+    // transform: rotate(45deg) translateY(var(--gap));
+    // 先放到我要的位置，再旋轉
+    // transform: translateY(calc(var(--gap) + var(--height))) rotate(45deg);
+    transform: translateY(var(--line-offset)) rotate(45deg);
+  }
+  &:nth-child(2) {
+    width: 0;
+  }
+  &:nth-child(3) {
+    // transform: rotate(-45deg) translateY(calc(-1 * var(--gap)));
+    transform: translateY(calc(-1 * var(--line-offset))) rotate(-45deg);
+  }
+}
+
+.o-burger {
+  // 變數值用 rem function 需要加 scss 語法 #{}
+  --size: #{rem(42)};
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  width: var(--size);
+  height: var(--size);
+  cursor: pointer;
+  z-index: 999;
+  @include media(max-2xl) {
+    display: flex;
+  }
+  @include media(max-sm) {
+    --size: #{rem(38)};
+  }
+  &.is-opened &__line {
+    --line-offset: calc(var(--gap) + var(--height));
+    &:nth-child(1) {
+      // 不能先旋轉在位移，因為會先改變軸心才位移，位置會不對
+      // transform: rotate(45deg) translateY(var(--gap));
+      // 先放到我要的位置，再旋轉
+      // transform: translateY(calc(var(--gap) + var(--height))) rotate(45deg);
+      transform: translateY(var(--line-offset)) rotate(45deg);
+    }
+    &:nth-child(2) {
+      width: 0;
+    }
+    &:nth-child(3) {
+      // transform: rotate(-45deg) translateY(calc(-1 * var(--gap)));
+      transform: translateY(calc(-1 * var(--line-offset))) rotate(-45deg);
+    }
+  }
+  &__line {
+    --gap: #{rem(8)};
+    --height: 2px;
+    width: 80%;
+    height: var(--height);
+    background-color: var(--color-gray-light);
+    transition: width 0.5s, transform 0.5s;
+    &:not(:first-child) {
+      margin-top: var(--gap);
+    }
+  }
+  // .o-burger:hover .o-burger__line {}
+  &:hover:not(.is-opened) &__line {
+    &:nth-child(1) {
+      width: 90%;
+    }
+    &:nth-child(2) {
+      width: 70%;
+    }
+    &:nth-child(3) {
+      width: 90%;
+    }
+  }
+}

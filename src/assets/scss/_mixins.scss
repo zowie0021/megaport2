@@ -1,0 +1,47 @@
+@mixin media($point) {
+  @if ($point == max-3xl) {
+    @media (max-width: 1599.98px) {
+      @content;
+    }
+  }
+  @if ($point == max-2xl) {
+    @media (max-width: 1399.98px) {
+      @content;
+    }
+  }
+  @if ($point == max-xl) {
+    @media (max-width: 1199.98px) {
+      @content;
+    }
+  }
+  @if ($point == max-ipad-portrait) {
+    @media (max-width: 1023.98px) and (orientation: portrait) {
+      @content;
+    }
+  }
+  @if ($point == max-ipad) {
+    @media (max-width: 1023.98px) {
+      @content;
+    }
+  }
+  @if ($point == max-lg) {
+    @media (max-width: 991.98px) {
+      @content;
+    }
+  }
+  @if ($point == max-md) {
+    @media (max-width: 767.98px) {
+      @content;
+    }
+  }
+  @if ($point == max-sm) {
+    @media (max-width: 575.98px) {
+      @content;
+    }
+  }
+}
+
+@mixin size($w, $h: $w) {
+  width: $w;
+  height: $h
+}

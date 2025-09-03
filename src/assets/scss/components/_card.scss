@@ -1,0 +1,23 @@
+.c-card {
+  transition: filter 0.3s;
+  &:hover {
+    // box-shadow: 0 0 rem(16) var(--color-black-80);
+    filter: drop-shadow(0 0 rem(8) var(--color-black-80));
+  }
+  &__date {
+    display: inline-block;
+    padding: var(--spacing-2) var(--spacing-4);
+    background-color: var(--color-black);
+    border-radius: var(--spacing-2) var(--spacing-2) 0 0;
+    font-size: var(--text-lg);
+    font-weight: 900;
+    letter-spacing: var(--tracking-tighter);
+    color: var(--color-primary)
+  }
+  &__wrap {
+    padding: var(--spacing-4);
+    background-color: var(--color-black);
+    border-radius: var(--spacing-2);
+    border-top-left-radius: 0;
+  }
+}

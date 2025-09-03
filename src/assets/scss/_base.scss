@@ -1,0 +1,204 @@
+*, *::before, *::after {
+  position: relative;
+  box-sizing: border-box;
+}
+
+// html {
+//   font-size: 16px; 
+// }
+// @media (max-width: 1200px) {
+//   html {
+//     font-size: 15px;
+//   }
+// }
+
+html {
+  font-size: 16px;
+  @include media(max-xl) {
+    font-size: 15px;
+  }
+  // @media (max-width: 1200px) {
+  //   font-size: 15px;
+  // }
+  // @media (max-width: 1024px) {
+  //   font-size: 14px;
+  // }
+}
+
+body {
+  margin: 0;
+  background-image: url('../img/bg-dots.png');
+  background-color: var(--color-gray-mid);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 400;
+  // ios 文字去毛邊
+  -webkit-font-smoothing: antialiased;
+  // letter-spacing: 1.2px;
+  // 0.08em 會根據設定的文字大小 0.08 倍的間距
+  letter-spacing: var(--tracking-normal);
+  line-height: var(--leading-tight);
+  color: var(--color-gray-light)
+}
+
+
+/* ----------------------------------- */
+/* ------ Reset ------ */
+/* ----------------------------------- */
+ul, ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  &.-initial {
+    list-style: revert;
+  }
+}
+ul.-initial {
+  padding-left: rem(28);
+}
+ol.-initial {
+  padding-left: rem(36);
+}
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+svg {
+  max-width: inherit;
+  vertical-align: middle;
+}
+a, button, input, label, select, textarea {
+  // 防止雙點擊畫面放大
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+a, button {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+button {
+  appearance: none;
+  padding: 0;
+  background: none;
+  border: none;
+}
+h1, h2, h3, h4, h5, h6, p, button {
+  margin: 0;
+  // 防止插件影響我們自己的設定
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+p {
+  line-height: 1.6;
+}
+span {
+  display: block;
+  line-height: inherit;
+}
+// .u-inline {
+//   display: inline;
+// }
+
+/* ----------------------------------- */
+/* ------ Layouts ------ */
+/* ----------------------------------- */
+section {
+  padding: var(--section-spacing-y) var(--section-spacing-x);
+  &.-gradient {
+    background-image: linear-gradient(to bottom, var(--color-black) 0%, transparent 70%);
+  }
+}
+
+.container {
+  --container-width: var(--container-default);
+  // &-md {
+  //   --container-width: var(--container-md);
+  // }
+  // &-sm {
+  //   --container-width: var(--container-sm);
+  // }
+  &-md {
+    --container-width: var(--container-md);
+  }
+  &-sm {
+    --container-width: var(--container-sm);
+  }
+  &-xs {
+    --container-width: var(--container-xs);
+  }
+  &-2xs {
+    --container-width: var(--container-2xs);
+  }
+  &-3xs {
+    --container-width: var(--container-3xs);
+  }
+  // @each $size, $value in $container-map {
+  //   &-#{$size} {
+  //     --container-width: var(--container-#{$size});
+  //   }
+  // }
+}
+
+[class*="container"] {
+  // 這邊需要定義 Section 寬度，是因為 Section 不宜一定總是寬度 100%
+  --section-width: 100vw;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  &.-align-left {
+    // width: auto 移除預設 100%
+    // 使 container 寬度不侷限在 section padding 裡
+    width: auto;
+  
+    // |----------||----------| section 寬
+    //        |---||---|        container 最大寬
+    // |----------||---|        section 寬 / 2 + container 最大寬 / 2
+    //
+    // section 一半 + container 最大寬的一半 - container 預設 padding
+    max-width: calc(var(--section-width) / 2 + var(--container-width) / 2 - var(--bs-gutter-x,.75rem));
+    padding-left: 0;
+    margin-left: calc(-1 * var(--section-spacing-x));
+  }
+}
+
+.row {
+  &.-gap {
+    --bs-gutter-x: var(--spacing-8);
+    --bs-gutter-y: var(--spacing-8);
+  }
+}
+
+/* ----------------------------------- */
+/* ------ Plugins ------ */
+/* ----------------------------------- */
+.js-lazy {
+  // 因為我們是用透明的 1x1px 的圖做載入圖
+  // 如果圖沒加 u-object-fit 的話，會很小，所以要加上 min-width: 100%;
+  min-width: 100%;
+  background-color: var(--color-skeleton);
+  // background-image: linear-gradient(to right, var(--color-black-20), var(--color-black-40));
+  // for png 圖，不想要有載入預覽畫面，可以加
+  &.-bg-clean {
+    background-color: transparent;
+    background-image: none;
+  }
+  &.loaded, &.error {
+    // 載入結束後要還原 width
+    min-width: 0;
+    background-color: transparent;
+    background-image: none;
+  }
+}

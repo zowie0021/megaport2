@@ -1,0 +1,5 @@
+// scss 函示
+@function rem($pxValue) {
+  // #{} 讓變數可以帶進原生 css calc 轉成數值計算
+  @return calc(var(--html-spacing) * #{$pxValue});
+}

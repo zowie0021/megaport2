@@ -1,0 +1,55 @@
+header(class="l-header")
+  a(href=basePath class="l-header__logo-mask")
+    img(src=`${basePath}/img/logo/logo.svg`, alt="大港開唱 Logo")
+
+  button(class="o-burger")
+    div(class="o-burger__line")
+    div(class="o-burger__line")
+    div(class="o-burger__line")
+
+  //- input(type="checkbox" id="burger-switcher" hidden)
+
+  //- label(for="burger-switcher" class="o-burger")
+  //-   div(class="o-burger__line")
+  //-   div(class="o-burger__line")
+  //-   div(class="o-burger__line")
+
+  nav(class="c-nav l-header__nav")
+    div(class="c-nav__menu")
+      ul(class="c-nav__btn-box")
+        li(class="c-nav__btn-wrap")
+          a(href="##" class="c-nav__btn")
+            span(class="font-en text-lg fw-900") LINEUP
+            span 演出陣容
+        li(class="c-nav__btn-wrap")
+          a(href=`${basePath}/news/` class="c-nav__btn")
+            span(class="font-en text-lg fw-900") NEWS
+            span 最新消息
+        li(class="c-nav__btn-wrap")
+          a(href=`${basePath}/#about` class="c-nav__btn")
+            span(class="font-en text-lg fw-900") ABOUT
+            span 關於大港
+        li(class="c-nav__btn-wrap")
+          a(href="##" class="c-nav__btn")
+            span(class="font-en text-lg fw-900") TIMETABLE
+            span 節目表
+        li(class="c-nav__btn-wrap")
+          a(href="##" class="c-nav__btn")
+            span(class="font-en text-lg fw-900") TICKET
+            span 購票資訊
+        li(class="c-nav__btn-wrap")
+          a(href=`${basePath}/contact.html` class="c-nav__btn")
+            span(class="font-en text-lg fw-900") MAP
+            span 地圖導覽
+
+      //- ul(class="c-nav__btn-box c-nav__btn-box--links")
+      ul(class="c-nav__btn-box -links")
+        li(class="c-nav__btn-wrap")
+          a(href="https://www.facebook.com/megaportfest/" target="_blank" class="c-nav__btn")
+            iconify-icon(icon="mingcute:facebook-fill" class="u-icon-md")
+        li(class="c-nav__btn-wrap")
+          a(href="https://www.instagram.com/megaportfest/" target="_blank" class="c-nav__btn")
+            iconify-icon(icon="mingcute:ins-fill" class="u-icon-md")
+        li(class="c-nav__btn-wrap")
+          a(href="https://www.youtube.com/channel/UC7xWU14_GGYKVqoSLg1M8EQ/feed" target="_blank" class="c-nav__btn")
+            iconify-icon(icon="mingcute:youtube-fill" class="u-icon-md")

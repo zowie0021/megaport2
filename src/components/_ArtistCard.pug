@@ -1,0 +1,35 @@
+//- 類似 JS 的 function，用來建立可複用性的原件
+mixin ArtistCard(options)
+  //- "-" 符號，讓我們可以在 pug 寫 JS
+  //- 這邊的 JS 不會被編譯出去 HTML
+  //- 所以不能在這邊做 JS 插件引入或初始化
+  -
+    // props 前端框架常用的命名，用來表示 components 傳進來的參數
+    // Object.assign 用來合併物件的預設值及傳進來的 options 值
+    // 可以用註解，表示可以傳那些值進來，如 sm, lg
+    const props = Object.assign({
+      // 資料
+      data: {},
+      // 設定值
+      size: '', // sm, lg
+      direction: '' // reverse
+    }, options)
+
+    const data = props.data;
+    const classes = [
+      props.size ? `-size-${props.size}` : '',
+      props.direction ? `-${props.direction}` : ''
+    ];
+
+  article(class='c-artist-card' class=classes)
+    a(href="##" class="c-artist-card__wrap") 
+      h3(class="text-xl fw-900 tracking-tight") #{data.title}
+      div(class="u-img-ratio" style="--ratio: 3/2")
+        //- 因為 aspect-ratio 會因為圖片寬高而不符合設定的比例
+        //- 所以圖片要加上 -abs 絕對定位，讓他跳脫自己的佔位，去符合父層 aspect-ratio
+        //- 等於是 u-img-ratio 當容器，讓 img 去撐滿
+        img(
+          data-src=data.image
+          alt=data.title
+          class="js-lazy u-object-fit -abs"
+        )

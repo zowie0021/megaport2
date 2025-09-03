@@ -1,0 +1,12 @@
+.o-section-title {
+  font-weight: 900;
+  color: var(--color-secondary);
+  &__title {
+    font-size: var(--text-5xl);
+    letter-spacing: 0;
+  }
+  &__subtitle {
+    font-size: var(--text-lg);
+    letter-spacing: var(--tracking-tight);
+  }
+}

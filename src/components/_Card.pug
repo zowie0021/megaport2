@@ -1,0 +1,32 @@
+mixin Card(options)
+  -
+    const props = Object.assign({
+      data: {}
+    }, options)
+
+    const data = props.data;
+    const classes = [];
+
+  article(class="c-card" class=classes)
+    span(class="c-card__date") #{data.publish_date}
+    div(class="c-card__wrap")
+      a(
+        href=`${basePath}/news/${data.path || data.id}.html`
+        class="u-img-ratio" 
+        style="--ratio: 1/1"
+      )
+        //- 因為 aspect-ratio 會因為圖片寬高而不符合設定的比例
+        //- 所以圖片要加上 -abs 絕對定位，讓他跳脫自己的佔位，去符合父層 aspect-ratio
+        //- 等於是 u-img-ratio 當容器，讓 img 去撐滿
+        img(
+          data-src=`${basePath}/${data.image}`
+          alt=data.title
+          class="js-lazy u-object-fit -abs"
+        )
+
+      span #{data.category}
+      h3(class="my-4 text-md fw-700 line-clamp-1") #{data.title}
+      p(class="line-clamp-2") #{data.description}
+
+      div(class="o-btn -align-right mt-10 mb-2")
+        a(href=`${basePath}/news/${data.path || data.id}.html` class="o-btn__link") MORE

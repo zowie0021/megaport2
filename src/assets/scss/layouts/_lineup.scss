@@ -1,0 +1,27 @@
+.l-lineup {
+  &__card-wrap {
+    &:first-child {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+    &:nth-child(4) {
+      display: flex;
+      justify-content: center;
+    }
+    @include media(max-xl) {
+      &:nth-child(3) {
+        display: flex;
+        justify-content: flex-end;
+      }
+      &:nth-child(4) {
+        // display: block;
+        justify-content: flex-start;
+      }
+      &:last-child {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}

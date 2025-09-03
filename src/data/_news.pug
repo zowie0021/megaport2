@@ -1,0 +1,76 @@
+//- "-" 符號，讓我們可以在 pug 寫 JS
+//- 這邊的 JS 不會被編譯出去 HTML
+-
+  // 5，因為 id 不能重複，所以在這邊紀錄 id 寫到哪了
+  const newsList = [
+    {
+      id: 6,
+      path: 'custom-path',
+      publish_date: '2021.05.24',
+      title: '123123123',
+      description: 'asdasdasdsadsa',
+      image: 'img/news/img-03.jpg',
+      content: '',
+    },
+    {
+      id: 3,
+      publish_date: '2021.05.24',
+      title: '大港開唱 x MegaFun',
+      description: '✧ 好耍 ✧趣味 ✧足歡喜 大港娛樂特區MegaFun全方位手冊 . ** MEGADIVE 孤枝大夫 ** 輕鬆享受人體衝浪支',
+      image: 'img/news/img-03.jpg',
+      content: '',
+    },
+    {
+      id: 5,
+      publish_date: '2021.04.12',
+      title: '大港 防疫公告！',
+      description: '【入場需先填寫 Line 實聯制問卷才能兌換手環】 如何填寫實聯制',
+      image: 'img/news/img-01.jpg',
+      content: `
+        <p>內容文字內容文字內容文字內容文字內容文字內容文字</p>
+        <img src="${basePath}/img/news/img-01.jpg" />
+        <p>內容文字內容文字內容文字內容文字內容文字內容文字</p>
+        <ul>
+          <li>清單</li>
+          <li>清單</li>
+          <li>清單</li>
+        </ul>
+        <p>
+          內容文字內容文字內容文字內容文字內容文字內容文字<br />
+          內容文字內容文字內容文字內容文字內容文字內容文字<br />
+          內容文字內容文字內容文字內容文字內容文字內容文字<br />
+          內容文字內容文字內容文字內容文字內容文字內容文字<br />
+          內容文字內容文字內容文字內容文字內容文字內容文字<br />
+        </p>
+        <p>內容文字內容文字內容文字內容文字內容文字內容文字</p>
+        <img src="${basePath}/img/news/img-01.jpg" />
+        <p>內容文字內容文字內容文字內容文字內容文字內容文字</p>
+      `,
+    },
+    {
+      id: 4,
+      publish_date: '2021.05.10',
+      title: '金牌台啤x大港開唱 聯名限定上市',
+      description: '為在地音樂乾一杯！ 金牌台啤x大港開唱聯名啤酒限定上市 高雄最具代表性的大型音樂',
+      image: 'img/news/img-02.jpg',
+      category: 'design',
+      content: '',
+    },
+    {
+      id: 2,
+      publish_date: '2021.06.17',
+      title: '大港帥口罩',
+      description: '想要這個大港口罩嗎？填寫實聯制問卷就送給你 #只送不賣 #有大港單雙日票券者才可兌換',
+      image: 'img/news/img-04.jpg',
+      category: 'design',
+      content: '',
+    },
+    {
+      id: 1,
+      publish_date: '2021.06.22',
+      title: '官方周邊 正式公佈！',
+      description: '敲破碗的大港周邊這不就來了嗎 . 定番款大港毛巾必收 漁夫帽門簾與工作衫首次登場 超搶眼',
+      image: 'img/news/img-05.jpg',
+      content: '',
+    }
+  ];

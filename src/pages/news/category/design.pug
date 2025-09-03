@@ -1,0 +1,11 @@
+include ../../../components/_NewsList.pug
+
+//- 模擬資料庫或後端傳來的 api
+include ../../../data/_news.pug
+
++NewsList({
+  catePath: 'design',
+  list: newsList.filter(function(item) {
+    return item.category === 'design'
+  })
+})

@@ -1,0 +1,61 @@
+.l-home-news {
+  &__swiper {
+    // 確保卡片的 hover 陰影不會被 overflow hidden 吃掉
+    padding: rem(16);
+    // 設定手機版輪播上下張預覽
+    // 缺點是，最後一張會空掉
+    // @include media(max-sm) {
+    //   padding: rem(16) 10vw;
+    // }
+  }
+  &__slide {
+    // slidesPerView: 'auto'
+    // 改善輪播上下張預覽最後一張會空掉問題
+    @include media(max-sm) {
+      width: 70vw
+    }
+  }
+
+  &__swiper-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: var(--spacing-4);
+    background-color: var(--color-gray-light);
+    color: var(--color-gray-mid);
+    z-index: 10;
+    transition: 0.3s;
+    &:hover {
+      background-color: var(--color-black);
+      color: var(--color-secondary);
+      box-shadow: 0 0 var(--spacing-1) var(--color-black-80);
+    }
+    &:active {
+      background-color: var(--color-secondary);
+      color: var(--color-black);
+      box-shadow: 0 0 var(--spacing-1) var(--color-gray-light-80);
+      transition: 0s;
+    }
+    &.-prev {
+      left: 0;
+      border-radius: 0 var(--spacing-4) var(--spacing-4) 0;
+    }
+    &.-next {
+      right: 0;
+      border-radius: var(--spacing-4) 0 0 var(--spacing-4);
+    }
+  }
+}
+
+.l-news-detail {
+  &__title-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: var(--spacing-4);
+    border-bottom: 2px solid var(--color-gray-light);
+  }
+  &__content {
+    padding: var(--spacing-10) var(--spacing-2) 0;
+  }
+}

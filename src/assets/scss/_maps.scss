@@ -1,0 +1,170 @@
+// Container
+$container-map: (
+  md: rem(1600),
+  normal: rem(1520),
+  sm: rem(1440),
+  xs: rem(1360),
+  2xs: rem(1280),
+  3xs: rem(880)
+);
+
+$spacing-map: (
+  40: 24vw,
+  36: 22vw,
+  30: 20vw,
+  26: 19vw,
+  24: 18vw,
+  22: 17vw,
+  20: 16vw,
+  18: 15vw,
+  16: 14vw,
+  14: 12vw,
+  12: 10vw,
+  10: 8vw,
+  9: 7vw,
+  8: 6vw,
+  6: 5vw,
+  5: 4vw,
+  4: 3vw,
+  3: 2vw,
+  2: null,
+  1: null,
+  0: null,
+  auto: null
+);
+$spacing-prefixes: (
+  p: padding,
+  px: padding-left padding-right,
+  py: padding-top padding-bottom,
+  pl: padding-left,
+  pr: padding-right,
+  pt: padding-top,
+  pb: padding-bottom,
+  m: margin,
+  mx: margin-left margin-right,
+  my: margin-top margin-bottom,
+  ml: margin-left,
+  mr: margin-right,
+  mt: margin-top,
+  mb: margin-bottom
+);
+
+$gap-prefixes: (
+  gap: gap,
+  gap-x: row-gap,
+  gap-y: column-gap
+);
+
+// Font
+$font-map: (
+  sans: '"Noto Sans TC", sans-serif',
+  serif: '"Noto Serif TC", serif',
+  en: '"Roboto", sans-serif'
+);
+
+// Text
+$text-map: (
+  5xl: (
+    default: rem(64), max-sm: rem(62)
+  ),
+  4xl: (
+    default: rem(40), max-md: rem(36), max-sm: rem(32)
+  ),
+  3xl: (
+    default: rem(32), max-sm: rem(28)
+  ),
+  2xl: (
+    default: rem(28), max-sm: rem(24)
+  ),
+  xl: (
+    default: rem(24), max-sm: rem(22)
+  ),
+  lg: (
+    default: rem(20), max-sm: rem(18)
+  ),
+  md: (
+    default: rem(18), max-sm: rem(17)
+  ),
+  base: (
+    default: rem(16)
+  ),
+  sm: (
+    default: rem(14)
+  ),
+  xs: (
+    default: rem(12)
+  ),
+  2xs: (
+    default: rem(10)
+  )
+);
+
+// Line Height
+$leading-map: (
+  none: 1,
+  tight: 1.2,
+  snug: 1.4,
+  normal: 1.5,
+  relaxed: 1.6,
+  loose: 1.8
+);
+
+// Letter Spacing
+$tracking-map: (
+  tighter: 0.02em,
+  tight: 0.04em,
+  normal: 0.08em,
+  wide: 0.12em,
+  wider: 0.16em,
+  widest: 0.18em
+);
+
+// Colors
+$color-map: (
+  primary: (
+    default: #ef8322
+  ),
+  secondary: (
+    default: #96e881
+  ),
+  secondary-mid: (
+    default: #B2E2A6
+  ),
+  success: (
+    default: var(--color-primary)
+  ),
+  danger: (
+    default: #E2907C,
+    rgb: '226, 144, 124',
+    20: rgba(var(--color-danger-rgb), 0.2)
+  ),
+  // Sass 會將未加引號的顏色名稱（如 white, black, gray）解析為 CSS 顏色值
+  // 所以需要加引號
+  'black': (
+    default: #292929,
+    rgb: '41, 41, 41',
+    80: rgba(var(--color-black-rgb), 0.8),
+    20: rgba(var(--color-black-rgb), 0.2)
+  ),
+  'gray': (
+    default: #464646
+  ),
+  gray-mid: (
+    default: #9B9B9B,
+    rgb: '155, 155, 155',
+    40: rgba(var(--color-gray-mid-rgb), 0.4)
+  ),
+  gray-light: (
+    default: #F5F5F5,
+    rgb: '245, 245, 245',
+    80: rgba(var(--color-gray-light-rgb), 0.8)
+  ),
+  'white': (
+    default: #FFF,
+    rgb: '255, 255, 255',
+    60: rgba(var(--color-white-rgb), 0.6)
+  ),
+  skeleton: (
+    default: var(--color-gray-mid)
+  )
+);

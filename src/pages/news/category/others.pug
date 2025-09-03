@@ -1,0 +1,12 @@
+include ../../../components/_NewsList.pug
+
+//- 模擬資料庫或後端傳來的 api
+include ../../../data/_news.pug
+
+//- 篩出沒有設定分類的
++NewsList({
+  catePath: 'others',
+  list: newsList.filter(function(item) {
+    return !item.category;
+  })
+})

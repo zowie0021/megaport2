@@ -1,0 +1,59 @@
+include ../layouts/_Settings.pug
+include ../components/_Card.pug
+
+//- 模擬資料庫或後端傳來的 api
+include ../data/_news-category.pug
+
+mixin NewsList(options)
+  -
+    const props = Object.assign({
+      catePath: '',
+      list: []
+    }, options)
+
+    const currentCate = newsCategory.find(function(item) {
+      return item.path === props.catePath;
+    });
+    const classes = [];
+
+  doctype html
+  html(lang="en")
+    head
+      -
+        pageTitle = currentCate.title;
+        //- 兩個寫法都可以 
+        //- undefined 可以取消定義
+        //- description = currentCate.description ? currentCate.description : undefined;
+        description = currentCate.description || undefined;
+
+      include ../layouts/_Head.pug
+
+    body
+    
+      include ../layouts/_Header.pug
+
+      main(class="l-main")
+        div(class="l-hero-inner" data-aos="fade-down")
+          h2(class="text-3xl fw-900") NEWS
+          
+        section(class="l-news-list")
+          div(class="container")
+            ul(class="mb-16")
+              each item in newsCategory
+                li
+                  a(href=`${basePath}/news/${item.path ? `category/${item.path }.html` : ''}`) #{item.title}
+              //- li 
+              //-   a(href=`${basePath}/news/`) 全部
+              //- li 
+              //-   a(href=`${basePath}/news/category/latest.html`) 熱門消息
+              //- li 
+              //-   a(href=`${basePath}/news/category/design.html`) 設計快訊
+
+            h2(class="mb-16 text-xl fw-900") #{currentCate.title}
+
+            div(class="row -gap")
+              each item, index in props.list
+                div(class="col-md-3")
+                  +Card({ data: item, index })
+
+      include ../layouts/_Footer.pug
